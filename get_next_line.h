@@ -19,7 +19,14 @@
 
 char	*get_next_line(int fd);
 
+/**
+ * Null safe version of strlen. Returns 0 if the string is NULL
+ */
 size_t	ft_strlen(const char *s);
+/**
+ * Finds a newline character in the string, and returns a pointer to it
+ * returns NULL if no newline was found
+ */
 char	*find_newline(char *str);
 
 #endif

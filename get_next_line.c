@@ -79,6 +79,11 @@ static char	*read_until_newline(int fd, char *leftover)
 	return (leftover);
 }
 
+/**
+ * Return everything in leftover up to (and including) the first newline
+ * If there is no newline, returns leftover and sets leftover_p to NULL
+ * If there is a newline, allocate a new string and copy everything.
+ */
 static char	*get_line(char **leftover_p, char *leftover)
 {
 	char	*line;
@@ -108,7 +113,9 @@ static char	*get_line(char **leftover_p, char *leftover)
 }
 
 /**
- * Get everything after the first '\n' and put it in a new string. Free leftover
+ * Get everything after the first '\n' and put it in a new string.
+ * Always frees leftover
+ * If the newline was the last character in the string, return NULL
  */
 static char	*get_leftover(char *leftover)
 {
