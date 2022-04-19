@@ -147,6 +147,8 @@ char	*get_next_line(int fd)
 	if (fd < 0)
 		return (NULL);
 	cur_list = find_or_create_list(&buf_list, fd);
+	if (!cur_list)
+		return (NULL);
 	cur_list->leftover = read_until_newline(fd, cur_list->leftover);
 	if (!cur_list->leftover)
 		return (NULL);
