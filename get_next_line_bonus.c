@@ -150,9 +150,10 @@ char	*get_next_line(int fd)
 	if (!cur_list)
 		return (NULL);
 	cur_list->leftover = read_until_newline(fd, cur_list->leftover);
-	if (!cur_list->leftover)
-		return (NULL);
-	line = get_line(&cur_list->leftover, cur_list->leftover);
+	if (cur_list->leftover != NULL)
+		line = get_line(&cur_list->leftover, cur_list->leftover);
+	else
+		line = NULL;
 	if (cur_list->leftover != NULL)
 		cur_list->leftover = get_leftover(cur_list->leftover);
 	if (cur_list->leftover == NULL)
